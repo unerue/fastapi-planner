@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException, status
 from src.models.users import User, UserSignIn
 from src.database.connection import Database
 
+
 user_router = APIRouter(
     prefix="/users",
     tags=["Users"]
@@ -20,12 +21,6 @@ async def sign_new_user(user: User):
     return {
         "message": "User created successfully!!"
     }
-
-
-
-
-
-
 
 
 @user_router.post("/signin")

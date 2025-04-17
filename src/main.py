@@ -2,15 +2,14 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from .routes.events import event_router
 from .routes.users import user_router
-from fastapi.middleware.cors import CORSMiddleware
-from src.database.connection import Settings
+from src.database.connection import initialize_database
 
-settings = Settings()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await settings.initialize_database()
+    await initialize_database()
     yield
+
 
 app = FastAPI(
     lifespan=lifespan
